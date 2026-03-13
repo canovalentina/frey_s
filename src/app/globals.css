@@ -99,3 +99,87 @@ h1, h2, h3, h4, h5, h6 {
 a, button {
   transition: color 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
 }
+
+/* ─── Page Entry Animation ─── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+main > * {
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Audio Player Padding ─── */
+/* When the global player is visible, prevent content hiding behind it */
+body:has(.global-player-visible) footer {
+  padding-bottom: 4rem;
+}
+
+/* ─── Micro-interactions ─── */
+
+/* Image hover zoom */
+.img-hover img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* Underline reveal on links */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ─── Range Input (volume slider) ─── */
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 2px;
+  background: #2a2a2a;
+  border-radius: 1px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #b2a2cb;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

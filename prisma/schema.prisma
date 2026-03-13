@@ -1,0 +1,146 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Music Catalog ───────────────────────────────────────────────
+
+model Track {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  description   String?
+  bpm           Int?
+  key           String?
+  durationSec   Int?
+  instrumentation String?
+  stemsAvailable Boolean  @default(false)
+
+  // Audio file URLs (Cloudflare R2 or Supabase Storage)
+  previewUrl    String?  // 30-45s watermarked clip
+  fullMp3Url    String?  // Full MP3 320kbps (post-purchase)
+  fullWavUrl    String?  // Full WAV 24-bit (post-purchase)
+  stemsUrl      String?  // Stems zip (professional license)
+  coverUrl      String?
+
+  // Publishing
+  published     Boolean  @default(false)
+  featured      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  moods         TrackMood[]
+  genres        TrackGenre[]
+  licenses      License[]
+  purchases     Purchase[]
+
+  @@index([published])
+  @@index([featured])
+}
+
+model Mood {
+  id     String      @id @default(cuid())
+  name   String      @unique
+  tracks TrackMood[]
+}
+
+model Genre {
+  id     String       @id @default(cuid())
+  name   String       @unique
+  tracks TrackGenre[]
+}
+
+model TrackMood {
+  track   Track  @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  trackId String
+  mood    Mood   @relation(fields: [moodId], references: [id])
+  moodId  String
+
+  @@id([trackId, moodId])
+}
+
+model TrackGenre {
+  track   Track  @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  trackId String
+  genre   Genre  @relation(fields: [genreId], references: [id])
+  genreId String
+
+  @@id([trackId, genreId])
+}
+
+// ─── Licensing E-Commerce ────────────────────────────────────────
+
+model License {
+  id          String      @id @default(cuid())
+  track       Track       @relation(fields: [trackId], references: [id], onDelete: Cascade)
+  trackId     String
+  type        LicenseType
+  price       Int         // cents (e.g. 9900 = $99.00)
+  stripePriceId String?   // Stripe Price ID for this tier
+
+  purchases   Purchase[]
+
+  @@unique([trackId, type])
+}
+
+enum LicenseType {
+  personal
+  standard
+  professional
+  exclusive
+}
+
+model Purchase {
+  id                String   @id @default(cuid())
+  track             Track    @relation(fields: [trackId], references: [id])
+  trackId           String
+  license           License  @relation(fields: [licenseId], references: [id])
+  licenseId         String
+
+  // Buyer info
+  buyerEmail        String
+  buyerName         String?
+
+  // Stripe
+  stripeSessionId   String?  @unique
+  stripePaymentIntentId String? @unique
+
+  // State
+  status            PurchaseStatus @default(pending)
+  downloadToken     String?  @unique // secure one-time download token
+  downloadExpiry    DateTime?
+  downloadCount     Int      @default(0)
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([buyerEmail])
+  @@index([stripeSessionId])
+  @@index([downloadToken])
+}
+
+enum PurchaseStatus {
+  pending
+  completed
+  refunded
+  failed
+}
+
+// ─── Contact / Inquiries ─────────────────────────────────────────
+
+model Inquiry {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  projectType String?
+  message     String
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([read])
+}

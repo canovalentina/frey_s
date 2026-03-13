@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import LicensingCatalog from "./LicensingCatalog";
 
 export const metadata: Metadata = {
   title: "License Music",
@@ -10,91 +12,52 @@ export const metadata: Metadata = {
 export default function LicensingPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
-      <div className="mb-16 max-w-2xl">
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-4">
-          Sync Licensing
-        </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#0a0a0a] mb-6">
-          License Music
-        </h1>
-        <p className="font-serif text-xl text-[#6b6b6b] leading-relaxed">
-          Original compositions available for film, TV, advertising, YouTube,
-          and more. Flexible license tiers for every project size.
-        </p>
-      </div>
-
-      {/* Coming soon placeholder */}
-      <div className="border border-dashed border-[#e2e0dd] p-16 text-center">
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-[#b2a2cb] mb-4">
-          Coming Soon
-        </p>
-        <h2 className="font-display text-2xl font-bold text-[#0a0a0a] mb-4">
-          Catalog launching soon
-        </h2>
-        <p className="font-serif text-[#6b6b6b] mb-8 max-w-md mx-auto">
-          The full licensing catalog is being prepared. In the meantime, reach
-          out directly for licensing inquiries.
-        </p>
-        <Link
-          href="/contact"
-          className="font-display text-sm font-semibold uppercase tracking-widest px-6 py-3 bg-[#0a0a0a] text-[#f7f5f2] hover:bg-[#b2a2cb] hover:text-[#0a0a0a] transition-colors inline-block"
-        >
-          Contact for Licensing
-        </Link>
-      </div>
-
-      {/* License Tiers Preview */}
-      <div className="mt-16 md:mt-24">
-        <h2 className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-8">
-          License Tiers
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            {
-              name: "Personal",
-              price: "$29–49",
-              use: "Personal projects, student films",
-              includes: "MP3, credit required",
-            },
-            {
-              name: "Standard",
-              price: "$99–199",
-              use: "YouTube, podcasts, small commercial",
-              includes: "WAV + MP3, credit required",
-            },
-            {
-              name: "Professional",
-              price: "$299–999",
-              use: "Film, TV, advertising",
-              includes: "Stems, WAV, flexible credit",
-            },
-            {
-              name: "Exclusive",
-              price: "Custom",
-              use: "Full buyout",
-              includes: "All rights transfer",
-            },
-          ].map((tier) => (
-            <div
-              key={tier.name}
-              className="border border-[#e2e0dd] p-6 hover:border-[#b2a2cb] transition-colors"
-            >
-              <p className="font-display text-xs uppercase tracking-widest text-[#b2a2cb] mb-3">
-                {tier.name}
-              </p>
-              <p className="font-display text-2xl font-bold text-[#0a0a0a] mb-2">
-                {tier.price}
-              </p>
-              <p className="font-serif text-sm text-[#6b6b6b] mb-3">
-                {tier.use}
-              </p>
-              <p className="font-display text-xs text-[#6b6b6b] border-t border-[#e2e0dd] pt-3">
-                {tier.includes}
-              </p>
-            </div>
-          ))}
+      {/* Header */}
+      <div className="mb-12 md:mb-16 grid md:grid-cols-2 gap-8 items-end">
+        <div>
+          <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-4">
+            Sync Licensing
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl font-bold tracking-tight text-[#0a0a0a]">
+            License Music
+          </h1>
+        </div>
+        <div>
+          <p className="font-serif text-lg text-[#6b6b6b] leading-relaxed mb-6">
+            Original compositions for film, TV, advertising, YouTube, and more.
+            Click play to preview — all previews are watermarked.
+          </p>
+          <Link
+            href="/contact"
+            className="font-display text-xs uppercase tracking-widest text-[#6b6b6b] hover:text-[#b2a2cb] transition-colors inline-flex items-center gap-1"
+          >
+            Need something custom? <ArrowRight size={12} />
+          </Link>
         </div>
       </div>
+
+      {/* Tier reference */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#e2e0dd] mb-16">
+        {[
+          { name: "Personal", price: "from $29", use: "Student films, personal" },
+          { name: "Standard", price: "from $99", use: "YouTube, podcasts" },
+          { name: "Professional", price: "from $299", use: "Film, TV, advertising" },
+          { name: "Exclusive", price: "Custom", use: "Full buyout" },
+        ].map((tier) => (
+          <div key={tier.name} className="bg-[#f7f5f2] p-4 md:p-6">
+            <p className="font-display text-[10px] uppercase tracking-widest text-[#b2a2cb] mb-1">
+              {tier.name}
+            </p>
+            <p className="font-display font-bold text-[#0a0a0a] text-sm mb-0.5">
+              {tier.price}
+            </p>
+            <p className="font-display text-[10px] text-[#6b6b6b]">{tier.use}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Catalog */}
+      <LicensingCatalog />
     </div>
   );
 }

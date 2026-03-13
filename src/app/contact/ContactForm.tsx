@@ -14,11 +14,33 @@ const projectTypes = [
 export default function ContactForm() {
   const [projectType, setProjectType] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: wire up to Resend email service in Phase 4
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      projectType,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please email directly at federicoreyes94@gmail.com");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -103,11 +125,16 @@ export default function ContactForm() {
         />
       </div>
 
+      {error && (
+        <p className="font-display text-xs text-red-600">{error}</p>
+      )}
+
       <button
         type="submit"
-        className="font-display text-sm font-semibold uppercase tracking-widest px-6 py-3 bg-[#0a0a0a] text-[#f7f5f2] hover:bg-[#b2a2cb] hover:text-[#0a0a0a] transition-colors inline-flex items-center gap-2"
+        disabled={loading}
+        className="font-display text-sm font-semibold uppercase tracking-widest px-6 py-3 bg-[#0a0a0a] text-[#f7f5f2] hover:bg-[#b2a2cb] hover:text-[#0a0a0a] transition-colors inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Send message <Send size={14} />
+        {loading ? "Sending…" : <>Send message <Send size={14} /></>}
       </button>
     </form>
   );

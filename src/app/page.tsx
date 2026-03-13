@@ -1,6 +1,37 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import JsonLd from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  openGraph: {
+    images: [
+      {
+        url: "/api/og?title=frey_s&sub=Composer+%26+Sound+Artist+%E2%80%94+Barcelona",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: "frey_s",
+  alternateName: "Federico Reyes",
+  description:
+    "Venezuelan composer and sound artist based in Barcelona. Piano, ambient, electronic, film scores.",
+  url: "https://freyes.com",
+  genre: ["Ambient", "Electronic", "Piano", "Orchestral"],
+  sameAs: [
+    "https://open.spotify.com/artist/2RhlkxQdR60M2zirFpmuTU",
+    "https://freysss.bandcamp.com/",
+    "https://www.youtube.com/channel/UCtoKbFukV0VzuYA02DNzF5A",
+    "https://www.instagram.com/_frey_s_/",
+  ],
+};
 
 const featuredWork = [
   {
@@ -26,6 +57,7 @@ const featuredWork = [
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={personSchema} />
       {/* ─── Hero ─── */}
       <section className="min-h-[90vh] flex flex-col justify-end px-6 md:px-12 pb-16 md:pb-24 max-w-7xl mx-auto w-full">
         <div className="max-w-4xl">

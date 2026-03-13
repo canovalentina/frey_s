@@ -123,7 +123,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-[#e2e0dd] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="font-display text-xs text-[#6b6b6b]">
-            © {new Date().getFullYear()} Federico Reyes. All rights reserved.
+            © 2024 Federico Reyes. All rights reserved.
           </p>
           <p className="font-display text-xs text-[#6b6b6b]">
             <a
