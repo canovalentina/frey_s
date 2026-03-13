@@ -14,10 +14,10 @@ export default function AboutPage() {
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
       {/* Header */}
       <div className="mb-16 md:mb-24 max-w-2xl">
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-4">
-          Biography
+        <p className="font-display text-xs text-[#8a847c] mb-4">
+          biography
         </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#0a0a0a]">
+        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#111111]">
           About
         </h1>
       </div>
@@ -26,7 +26,7 @@ export default function AboutPage() {
       <div className="grid md:grid-cols-2 gap-12 md:gap-24 mb-24 md:mb-32">
         {/* Photo */}
         <div className="space-y-4">
-          <div className="relative aspect-[4/5] overflow-hidden bg-[#e2e0dd]">
+          <div className="relative aspect-[4/5] overflow-hidden bg-[#d8d2ca]">
             <Image
               src="/img/fede-piano-barcelona.png"
               alt="Federico Reyes — Piano Barcelona"
@@ -34,7 +34,7 @@ export default function AboutPage() {
               className="object-cover"
             />
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden bg-[#e2e0dd]">
+          <div className="relative aspect-[4/3] overflow-hidden bg-[#d8d2ca]">
             <Image
               src="/img/fede-kew-gardens.png"
               alt="Federico Reyes at Kew Gardens"
@@ -46,13 +46,13 @@ export default function AboutPage() {
 
         {/* Bio Text */}
         <div className="flex flex-col justify-start pt-4">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a0a0a] mb-8 leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-[#111111] mb-8 leading-tight">
             Federico Reyes
             <br />
-            <span className="text-[#b2a2cb]">(frey_s)</span>
+            <span className="text-[#8a847c]">(frey_s)</span>
           </h2>
 
-          <div className="font-serif text-lg text-[#6b6b6b] leading-relaxed space-y-6">
+          <div className="font-serif text-lg text-[#8a847c] leading-relaxed space-y-6">
             <p>
               Federico Reyes (frey_s) is a Venezuelan artist based in Barcelona,
               Spain. With a foundation in piano, his creative pursuits have
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 href="https://www.city.ac.uk/prospective-students/courses/undergraduate/music-sound-and-technology"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#0a0a0a] underline underline-offset-4 hover:text-[#b2a2cb] transition-colors"
+                className="text-[#111111] underline underline-offset-4 hover:text-[#c8432a] transition-colors"
               >
                 Music, Sound and Technology at City University of London
               </a>{" "}
@@ -74,7 +74,7 @@ export default function AboutPage() {
                 href="https://cei.es/cei-curso/curso-intensivo-diseno-grafico/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#0a0a0a] underline underline-offset-4 hover:text-[#b2a2cb] transition-colors"
+                className="text-[#111111] underline underline-offset-4 hover:text-[#c8432a] transition-colors"
               >
                 Adobe Creative Suite certification at CEI
               </a>{" "}
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 href="https://www.sternbergclarke.co.uk/about"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#0a0a0a] underline underline-offset-4 hover:text-[#b2a2cb] transition-colors"
+                className="text-[#111111] underline underline-offset-4 hover:text-[#c8432a] transition-colors"
               >
                 Sternberg Clarke
               </a>
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 href="https://www.themusicklub.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#0a0a0a] underline underline-offset-4 hover:text-[#b2a2cb] transition-colors"
+                className="text-[#111111] underline underline-offset-4 hover:text-[#c8432a] transition-colors"
               >
                 The Music Klub
               </a>
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 href="https://lacreurecords.bandcamp.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#0a0a0a] underline underline-offset-4 hover:text-[#b2a2cb] transition-colors"
+                className="text-[#111111] underline underline-offset-4 hover:text-[#c8432a] transition-colors"
               >
                 La Creu Records
               </a>
@@ -117,11 +117,11 @@ export default function AboutPage() {
           </div>
 
           {/* Social Links */}
-          <div className="mt-10 pt-10 border-t border-[#e2e0dd]">
-            <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-6">
-              Find me on
+          <div className="mt-10 pt-10 border-t border-[#d8d2ca]">
+            <p className="font-display text-xs text-[#8a847c] mb-6">
+              elsewhere
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-6">
               {[
                 {
                   label: "Spotify",
@@ -145,9 +145,9 @@ export default function AboutPage() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-sm font-medium px-4 py-2 border border-[#e2e0dd] text-[#0a0a0a] hover:border-[#b2a2cb] hover:text-[#b2a2cb] transition-colors inline-flex items-center gap-2"
+                  className="font-display text-sm text-[#111111] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1"
                 >
-                  {label} <ExternalLink size={12} />
+                  {label} ↗
                 </a>
               ))}
             </div>
@@ -156,20 +156,17 @@ export default function AboutPage() {
       </div>
 
       {/* CTA */}
-      <div className="border-t border-[#e2e0dd] pt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div className="border-t border-[#d8d2ca] pt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-3">
-            Available for projects
-          </p>
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0a0a0a]">
+          <p className="font-serif text-2xl md:text-3xl text-[#111111] leading-snug">
             Let&apos;s work together
-          </h2>
+          </p>
         </div>
         <Link
           href="/contact"
-          className="font-display text-sm font-semibold uppercase tracking-widest px-6 py-3 bg-[#0a0a0a] text-[#f7f5f2] hover:bg-[#b2a2cb] hover:text-[#0a0a0a] transition-colors inline-flex items-center gap-2 shrink-0"
+          className="font-display text-sm text-[#111111] hover:text-[#c8432a] border-b border-[#111111] hover:border-[#c8432a] transition-colors pb-px inline-flex items-center gap-1 shrink-0"
         >
-          Get in touch <ArrowRight size={14} />
+          Get in touch <ArrowRight size={12} />
         </Link>
       </div>
     </div>

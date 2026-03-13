@@ -45,11 +45,11 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="border border-[#b2a2cb] p-8">
-        <h2 className="font-display text-2xl font-bold text-[#0a0a0a] mb-3">
+      <div className="border-t border-[#c8432a] pt-8">
+        <h2 className="font-display text-2xl font-bold text-[#111111] mb-3">
           Message sent
         </h2>
-        <p className="font-serif text-[#6b6b6b]">
+        <p className="font-serif text-[#8a847c]">
           Thank you for reaching out. I typically respond within 2–3 business
           days.
         </p>
@@ -61,36 +61,36 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Name */}
       <div>
-        <label className="font-display text-xs uppercase tracking-widest text-[#6b6b6b] block mb-2">
-          Name
+        <label className="font-display text-xs text-[#8a847c] block mb-2">
+          name
         </label>
         <input
           type="text"
           name="name"
           required
-          className="w-full bg-transparent border border-[#e2e0dd] px-4 py-3 font-display text-sm text-[#0a0a0a] placeholder-[#6b6b6b] focus:border-[#b2a2cb] focus:outline-none transition-colors"
+          className="w-full bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors"
           placeholder="Your name"
         />
       </div>
 
       {/* Email */}
       <div>
-        <label className="font-display text-xs uppercase tracking-widest text-[#6b6b6b] block mb-2">
-          Email
+        <label className="font-display text-xs text-[#8a847c] block mb-2">
+          email
         </label>
         <input
           type="email"
           name="email"
           required
-          className="w-full bg-transparent border border-[#e2e0dd] px-4 py-3 font-display text-sm text-[#0a0a0a] placeholder-[#6b6b6b] focus:border-[#b2a2cb] focus:outline-none transition-colors"
+          className="w-full bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors"
           placeholder="your@email.com"
         />
       </div>
 
       {/* Project Type */}
       <div>
-        <label className="font-display text-xs uppercase tracking-widest text-[#6b6b6b] block mb-2">
-          Project Type
+        <label className="font-display text-xs text-[#8a847c] block mb-2">
+          project type
         </label>
         <div className="flex flex-wrap gap-2">
           {projectTypes.map((type) => (
@@ -98,10 +98,10 @@ export default function ContactForm() {
               key={type}
               type="button"
               onClick={() => setProjectType(type)}
-              className={`font-display text-xs uppercase tracking-widest px-3 py-2 border transition-colors ${
+              className={`font-display text-xs px-2 py-1 border transition-colors ${
                 projectType === type
-                  ? "border-[#b2a2cb] bg-[#b2a2cb] text-[#0a0a0a]"
-                  : "border-[#e2e0dd] text-[#6b6b6b] hover:border-[#b2a2cb] hover:text-[#b2a2cb]"
+                  ? "border-[#c8432a] text-[#c8432a]"
+                  : "border-[#d8d2ca] text-[#8a847c] hover:border-[#111111] hover:text-[#111111]"
               }`}
             >
               {type}
@@ -113,14 +113,14 @@ export default function ContactForm() {
 
       {/* Message */}
       <div>
-        <label className="font-display text-xs uppercase tracking-widest text-[#6b6b6b] block mb-2">
-          Message
+        <label className="font-display text-xs text-[#8a847c] block mb-2">
+          message
         </label>
         <textarea
           name="message"
           required
           rows={6}
-          className="w-full bg-transparent border border-[#e2e0dd] px-4 py-3 font-display text-sm text-[#0a0a0a] placeholder-[#6b6b6b] focus:border-[#b2a2cb] focus:outline-none transition-colors resize-none"
+          className="w-full bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors resize-none"
           placeholder="Tell me about your project..."
         />
       </div>
@@ -132,7 +132,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="font-display text-sm font-semibold uppercase tracking-widest px-6 py-3 bg-[#0a0a0a] text-[#f7f5f2] hover:bg-[#b2a2cb] hover:text-[#0a0a0a] transition-colors inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="font-display text-sm font-semibold py-3 px-6 bg-[#111111] text-[#f0ebe3] hover:bg-[#c8432a] transition-colors inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? "Sending…" : <>Send message <Send size={14} /></>}
       </button>

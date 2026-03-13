@@ -9,37 +9,25 @@
 
 /* ─── Design Tokens ─── */
 @theme inline {
-  /* Colors */
-  --color-ink:       #0a0a0a;
-  --color-paper:     #f7f5f2;
-  --color-lavender:  #b2a2cb;
-  --color-lavender-dim: #8b7aaa;
-  --color-muted:     #6b6b6b;
-  --color-border:    #e2e0dd;
-  --color-white:     #ffffff;
+  --color-paper:       #f0ebe3;
+  --color-ink:         #111111;
+  --color-brick:       #c8432a;
+  --color-brick-dim:   #a33520;
+  --color-warm-gray:   #8a847c;
+  --color-border:      #d8d2ca;
+  --color-white:       #ffffff;
 
-  /* Typography */
   --font-display: "Syne", sans-serif;
-  --font-body: "DM Serif Display", serif;
-  --font-mono: "DM Mono", monospace;
-
-  /* Spacing scale */
-  --spacing-section: 6rem;
-  --spacing-section-sm: 3rem;
-
-  /* Transitions */
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --font-body:    "DM Serif Display", serif;
 }
 
-/* ─── Base Styles ─── */
+/* ─── Base ─── */
 :root {
-  --background: #f7f5f2;
-  --foreground: #0a0a0a;
+  --background: #f0ebe3;
+  --foreground: #111111;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -53,128 +41,70 @@ body {
   font-family: "Syne", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
+  position: relative;
+}
+
+/* Grain texture overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 9998;
 }
 
 /* ─── Typography ─── */
 h1, h2, h3, h4, h5, h6 {
   font-family: "Syne", sans-serif;
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.font-display {
-  font-family: "Syne", sans-serif;
-}
-
-.font-serif {
-  font-family: "DM Serif Display", serif;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 /* ─── Scrollbar ─── */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-::-webkit-scrollbar-thumb {
-  background: #b2a2cb;
-  border-radius: 2px;
-}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: #c8432a; border-radius: 0; }
 
 /* ─── Selection ─── */
-::selection {
-  background: #b2a2cb;
-  color: #0a0a0a;
-}
+::selection { background: #c8432a; color: #f0ebe3; }
 
 /* ─── Focus ─── */
-:focus-visible {
-  outline: 2px solid #b2a2cb;
-  outline-offset: 3px;
-}
+:focus-visible { outline: 1px solid #c8432a; outline-offset: 3px; }
 
 /* ─── Transitions ─── */
-a, button {
-  transition: color 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
-}
+a, button { transition: color 0.15s ease, opacity 0.15s ease, background-color 0.15s ease; }
 
-/* ─── Page Entry Animation ─── */
+/* ─── Page Entry ─── */
 @keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 main > * {
-  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ─── Audio Player Padding ─── */
-/* When the global player is visible, prevent content hiding behind it */
-body:has(.global-player-visible) footer {
-  padding-bottom: 4rem;
-}
-
-/* ─── Micro-interactions ─── */
-
-/* Image hover zoom */
-.img-hover img {
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.img-hover:hover img {
-  transform: scale(1.04);
-}
-
-/* Underline reveal on links */
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.25s ease;
-}
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* ─── Range Input (volume slider) ─── */
+/* ─── Range Input ─── */
 input[type="range"] {
   -webkit-appearance: none;
-  height: 2px;
-  background: #2a2a2a;
-  border-radius: 1px;
+  height: 1px;
+  background: #333;
+  border-radius: 0;
   outline: none;
 }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #b2a2cb;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background: #c8432a;
   cursor: pointer;
   transition: transform 0.15s ease;
 }
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.3);
-}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.4); }
 
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {

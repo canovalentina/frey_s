@@ -97,34 +97,34 @@ export default function TrackDetailClient({ track, related }: Props) {
       {/* Back */}
       <Link
         href="/music/licensing"
-        className="font-display text-xs uppercase tracking-widest text-[#6b6b6b] hover:text-[#b2a2cb] transition-colors inline-flex items-center gap-1 mb-12"
+        className="font-display text-xs text-[#8a847c] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1 mb-12"
       >
-        <ArrowLeft size={12} /> Back to catalog
+        <ArrowLeft size={12} /> catalog
       </Link>
 
       <div className="grid md:grid-cols-2 gap-12 md:gap-20 mb-20">
         {/* Left — player & info */}
         <div>
           {/* Waveform area */}
-          <div className="bg-[#0a0a0a] p-8 mb-6">
+          <div className="bg-[#111111] p-8 mb-6">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <p className="font-display text-[10px] uppercase tracking-widest text-[#b2a2cb] mb-1">
+                <p className="font-display text-[10px] text-[#8a847c] mb-1">
                   {track.genres.join(" · ")}
                 </p>
-                <h1 className="font-display text-2xl font-bold text-[#f7f5f2]">
+                <h1 className="font-display text-2xl font-bold text-[#f0ebe3]">
                   {track.title}
                 </h1>
-                <p className="font-display text-sm text-[#6b6b6b] mt-0.5">
+                <p className="font-display text-sm text-[#555] mt-0.5">
                   frey_s
                 </p>
               </div>
               <button
                 onClick={handlePlay}
-                className="w-14 h-14 rounded-full bg-[#b2a2cb] text-[#0a0a0a] flex items-center justify-center hover:bg-[#f7f5f2] transition-colors shrink-0"
+                className="w-12 h-12 bg-[#c8432a] text-[#f0ebe3] flex items-center justify-center hover:bg-[#a33520] transition-colors shrink-0"
                 aria-label={isPlaying ? "Pause preview" : "Play preview"}
               >
-                {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
               </button>
             </div>
 
@@ -139,8 +139,8 @@ export default function TrackDetailClient({ track, related }: Props) {
                 return (
                   <div
                     key={i}
-                    className={`w-[2px] rounded-sm flex-shrink-0 transition-colors ${
-                      isCurrentTrack ? "bg-[#b2a2cb]/60" : "bg-[#2a2a2a]"
+                    className={`w-[2px] rounded-none flex-shrink-0 transition-colors ${
+                      isCurrentTrack ? "bg-[#c8432a]/60" : "bg-[#2a2a2a]"
                     }`}
                     style={{ height: `${height}%` }}
                   />
@@ -148,23 +148,23 @@ export default function TrackDetailClient({ track, related }: Props) {
               })}
             </div>
 
-            <p className="font-display text-[10px] text-[#3a3a3a] mt-3 text-center">
+            <p className="font-display text-[10px] text-[#444] mt-3 text-center">
               30-second watermarked preview
             </p>
           </div>
 
           {/* Track metadata */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-3 gap-px bg-[#d8d2ca] mb-6">
             {[
               { label: "Duration", value: formatDuration(track.duration) },
               { label: "BPM", value: track.bpm ?? "—" },
               { label: "Key", value: track.key ?? "—" },
             ].map(({ label, value }) => (
-              <div key={label} className="border border-[#e2e0dd] p-3 text-center">
-                <p className="font-display text-[10px] uppercase tracking-widest text-[#6b6b6b] mb-1">
+              <div key={label} className="bg-[#f0ebe3] p-3 text-center">
+                <p className="font-display text-[10px] text-[#8a847c] mb-1">
                   {label}
                 </p>
-                <p className="font-display font-semibold text-[#0a0a0a]">
+                <p className="font-display font-semibold text-[#111111]">
                   {value}
                 </p>
               </div>
@@ -172,45 +172,39 @@ export default function TrackDetailClient({ track, related }: Props) {
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 mb-4">
             {track.moods.map((m) => (
-              <span
-                key={m}
-                className="font-display text-xs px-3 py-1 bg-[#f0eee9] text-[#6b6b6b]"
-              >
+              <span key={m} className="font-display text-xs text-[#8a847c]">
                 {m}
               </span>
             ))}
             {track.genres.map((g) => (
-              <span
-                key={g}
-                className="font-display text-xs px-3 py-1 border border-[#e2e0dd] text-[#6b6b6b]"
-              >
+              <span key={g} className="font-display text-xs text-[#8a847c] opacity-60">
                 {g}
               </span>
             ))}
           </div>
 
           {track.instrumentation && (
-            <p className="font-serif text-sm text-[#6b6b6b]">
-              <span className="font-display text-[10px] uppercase tracking-widest text-[#6b6b6b] mr-2">
-                Instrumentation:
+            <p className="font-serif text-sm text-[#8a847c]">
+              <span className="font-display text-[10px] text-[#8a847c] mr-2">
+                instrumentation:
               </span>
               {track.instrumentation}
             </p>
           )}
 
           {track.stemsAvailable && (
-            <p className="font-display text-xs text-[#b2a2cb] mt-2 inline-flex items-center gap-1">
-              <Check size={12} /> Stems available on Pro license
+            <p className="font-display text-xs text-[#c8432a] mt-2 inline-flex items-center gap-1">
+              <Check size={12} /> stems available on pro license
             </p>
           )}
         </div>
 
         {/* Right — license selector */}
         <div>
-          <h2 className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-6">
-            Choose a License
+          <h2 className="font-display text-xs text-[#8a847c] mb-6">
+            choose a license
           </h2>
 
           <div className="space-y-3 mb-8">
@@ -223,21 +217,21 @@ export default function TrackDetailClient({ track, related }: Props) {
                   onClick={() => setSelectedLicense(license)}
                   className={`w-full text-left p-5 border transition-all ${
                     selected
-                      ? "border-[#b2a2cb] bg-[#b2a2cb]/5"
-                      : "border-[#e2e0dd] hover:border-[#b2a2cb]"
+                      ? "border-[#c8432a]"
+                      : "border-[#d8d2ca] hover:border-[#111111]"
                   }`}
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <p className="font-display font-semibold text-[#0a0a0a]">
+                      <p className="font-display font-semibold text-[#111111]">
                         {info.label}
                       </p>
-                      <p className="font-serif text-sm text-[#6b6b6b] mt-0.5">
+                      <p className="font-serif text-sm text-[#8a847c] mt-0.5">
                         {info.use}
                       </p>
                     </div>
                     <div className="text-right shrink-0 ml-4">
-                      <p className="font-display text-xl font-bold text-[#0a0a0a]">
+                      <p className="font-display text-xl font-bold text-[#111111]">
                         ${license.price}
                       </p>
                     </div>
@@ -246,9 +240,9 @@ export default function TrackDetailClient({ track, related }: Props) {
                     {info.includes.map((item) => (
                       <li
                         key={item}
-                        className="font-display text-[11px] text-[#6b6b6b] inline-flex items-center gap-1 mr-3"
+                        className="font-display text-[11px] text-[#8a847c] inline-flex items-center gap-1 mr-3"
                       >
-                        <Check size={10} className="text-[#b2a2cb]" /> {item}
+                        <Check size={10} className="text-[#c8432a]" /> {item}
                       </li>
                     ))}
                   </ul>
@@ -257,19 +251,19 @@ export default function TrackDetailClient({ track, related }: Props) {
             })}
 
             {/* Exclusive CTA */}
-            <div className="border border-dashed border-[#e2e0dd] p-5">
+            <div className="border border-dashed border-[#d8d2ca] p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-display font-semibold text-[#0a0a0a]">
+                  <p className="font-display font-semibold text-[#111111]">
                     Exclusive
                   </p>
-                  <p className="font-serif text-sm text-[#6b6b6b]">
+                  <p className="font-serif text-sm text-[#8a847c]">
                     Full buyout — custom quote
                   </p>
                 </div>
                 <Link
                   href="/contact"
-                  className="font-display text-xs uppercase tracking-widest px-4 py-2 border border-[#0a0a0a] text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-[#f7f5f2] transition-colors shrink-0"
+                  className="font-display text-xs px-4 py-2 border border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-[#f0ebe3] transition-colors shrink-0"
                 >
                   Inquire
                 </Link>
@@ -283,7 +277,7 @@ export default function TrackDetailClient({ track, related }: Props) {
               <button
                 onClick={handleCheckout}
                 disabled={checkoutLoading}
-                className="w-full font-display text-sm font-semibold uppercase tracking-widest py-4 bg-[#0a0a0a] text-[#f7f5f2] hover:bg-[#b2a2cb] hover:text-[#0a0a0a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full font-display text-sm font-semibold py-4 bg-[#111111] text-[#f0ebe3] hover:bg-[#c8432a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {checkoutLoading
                   ? "Redirecting to checkout…"
@@ -297,7 +291,7 @@ export default function TrackDetailClient({ track, related }: Props) {
             </>
           )}
 
-          <p className="font-display text-[10px] text-[#6b6b6b] text-center mt-3">
+          <p className="font-display text-[10px] text-[#8a847c] text-center mt-3">
             Secure checkout via Stripe · Instant download after payment
           </p>
         </div>
@@ -306,9 +300,9 @@ export default function TrackDetailClient({ track, related }: Props) {
       {/* Related tracks */}
       {related.length > 0 && (
         <div>
-          <div className="border-t border-[#e2e0dd] pt-16 mb-8">
-            <h2 className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b]">
-              Similar Tracks
+          <div className="border-t border-[#d8d2ca] pt-16 mb-8">
+            <h2 className="font-display text-xs text-[#8a847c]">
+              similar tracks
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -12,13 +12,13 @@ export default function ContactPage() {
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
       {/* Header */}
       <div className="mb-16 md:mb-24 max-w-2xl">
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-4">
-          Get in touch
+        <p className="font-display text-xs text-[#8a847c] mb-4">
+          get in touch
         </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#0a0a0a] mb-6">
+        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#111111] mb-6">
           Contact
         </h1>
-        <p className="font-serif text-xl text-[#6b6b6b] leading-relaxed">
+        <p className="font-serif text-xl text-[#8a847c] leading-relaxed">
           For film scores, licensing, collaborations, and live performance
           bookings.
         </p>
@@ -30,40 +30,40 @@ export default function ContactPage() {
         {/* Info */}
         <div className="space-y-10">
           <div>
-            <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-3">
-              Email
+            <p className="font-display text-xs text-[#8a847c] mb-3">
+              email
             </p>
             <a
               href="mailto:federicoreyes94@gmail.com"
-              className="font-display text-lg text-[#0a0a0a] hover:text-[#b2a2cb] transition-colors"
+              className="font-display text-lg text-[#111111] hover:text-[#c8432a] transition-colors"
             >
               federicoreyes94@gmail.com
             </a>
           </div>
 
           <div>
-            <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-3">
-              Based in
+            <p className="font-display text-xs text-[#8a847c] mb-3">
+              based in
             </p>
-            <p className="font-display text-lg text-[#0a0a0a]">
+            <p className="font-display text-lg text-[#111111]">
               Barcelona, Spain
             </p>
           </div>
 
           <div>
-            <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-3">
-              Response time
+            <p className="font-display text-xs text-[#8a847c] mb-3">
+              response time
             </p>
-            <p className="font-serif text-[#6b6b6b]">
+            <p className="font-serif text-[#8a847c]">
               I typically respond within 2–3 business days.
             </p>
           </div>
 
           <div>
-            <p className="font-display text-xs uppercase tracking-[0.2em] text-[#6b6b6b] mb-3">
-              Available for
+            <p className="font-display text-xs text-[#8a847c] mb-3">
+              available for
             </p>
-            <ul className="font-serif text-[#6b6b6b] space-y-1">
+            <ul className="font-serif text-[#8a847c] space-y-1">
               {[
                 "Film & TV scoring",
                 "Documentary music",
@@ -73,7 +73,7 @@ export default function ContactPage() {
                 "Music production",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-[#b2a2cb] flex-shrink-0" />
+                  <span className="w-1 h-1 bg-[#c8432a] flex-shrink-0" />
                   {item}
                 </li>
               ))}
