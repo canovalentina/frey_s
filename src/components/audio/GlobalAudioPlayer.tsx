@@ -66,63 +66,63 @@ export default function GlobalAudioPlayer() {
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="global-player-visible fixed bottom-0 left-0 right-0 z-50 bg-[#111111] text-[#f0ebe3]">
+    <div className="global-player-visible fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#E5E5E5]">
       {/* Progress bar */}
       <div
         ref={progressRef}
-        className="h-[2px] w-full bg-[#2a2a2a] cursor-pointer"
+        className="h-[1px] w-full bg-[#E5E5E5] cursor-pointer"
         onClick={handleProgressClick}
       >
-        <div className="h-full bg-[#c8432a] transition-none" style={{ width: `${progress}%` }} />
+        <div className="h-full bg-[#00DD44] transition-none" style={{ width: `${progress}%` }} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-14 flex items-center gap-4 md:gap-6">
+      <div className="px-6 md:px-12 h-12 flex items-center gap-4 md:gap-6">
         {/* Track info */}
         <div className="flex items-center gap-3 min-w-0 flex-1">
           {currentTrack.coverUrl ? (
-            <div className="relative w-8 h-8 shrink-0 overflow-hidden">
+            <div className="relative w-6 h-6 shrink-0 overflow-hidden">
               <Image src={currentTrack.coverUrl} alt={currentTrack.title} fill className="object-cover" />
             </div>
           ) : (
-            <div className="w-8 h-8 shrink-0 bg-[#222] flex items-center justify-center">
-              <Music size={12} className="text-[#c8432a]" />
+            <div className="w-6 h-6 shrink-0 bg-[#E5E5E5] flex items-center justify-center">
+              <Music size={10} className="text-[#999999]" />
             </div>
           )}
           <div className="min-w-0">
-            <p className="font-display text-xs font-semibold text-[#f0ebe3] truncate">{currentTrack.title}</p>
+            <p className="text-[11px] font-medium text-[#0A0A0A] truncate" style={{ fontFamily: "Inter, sans-serif" }}>{currentTrack.title}</p>
             {currentTrack.artist && (
-              <p className="font-display text-[10px] text-[#555] truncate">{currentTrack.artist}</p>
+              <p className="text-[10px] text-[#999999] truncate" style={{ fontFamily: "IBM Plex Mono, monospace" }}>{currentTrack.artist}</p>
             )}
           </div>
         </div>
 
         {/* Controls */}
         <div className="flex items-center gap-3 shrink-0">
-          <button onClick={prev} className="text-[#555] hover:text-[#f0ebe3] transition-colors" aria-label="Previous">
-            <SkipBack size={14} />
+          <button onClick={prev} className="text-[#999999] hover:text-[#0A0A0A]" aria-label="Previous">
+            <SkipBack size={12} />
           </button>
           <button
             onClick={togglePlay}
-            className="w-7 h-7 bg-[#c8432a] text-[#f0ebe3] flex items-center justify-center hover:bg-[#a33520] transition-colors"
+            className="w-5 h-5 bg-[#0A0A0A] text-white flex items-center justify-center hover:bg-[#FF2200]"
             aria-label={isPlaying ? "Pause" : "Play"}
           >
-            {isPlaying ? <Pause size={12} /> : <Play size={12} />}
+            {isPlaying ? <Pause size={10} /> : <Play size={10} />}
           </button>
-          <button onClick={next} className="text-[#555] hover:text-[#f0ebe3] transition-colors" aria-label="Next">
-            <SkipForward size={14} />
+          <button onClick={next} className="text-[#999999] hover:text-[#0A0A0A]" aria-label="Next">
+            <SkipForward size={12} />
           </button>
         </div>
 
         {/* Time */}
         <div className="hidden md:flex items-center gap-1 shrink-0">
-          <span className="font-display text-[10px] text-[#555]">{formatTime(currentTime)}</span>
-          <span className="font-display text-[10px] text-[#333]">/</span>
-          <span className="font-display text-[10px] text-[#555]">{formatTime(duration)}</span>
+          <span className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>{formatTime(currentTime)}</span>
+          <span className="text-[10px] text-[#E5E5E5]">/</span>
+          <span className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>{formatTime(duration)}</span>
         </div>
 
         {/* Volume */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
-          <button onClick={() => setMuted(!muted)} className="text-[#555] hover:text-[#f0ebe3] transition-colors" aria-label="Toggle mute">
+          <button onClick={() => setMuted(!muted)} className="text-[#999999] hover:text-[#0A0A0A]" aria-label="Toggle mute">
             {muted || volume === 0 ? <VolumeX size={12} /> : <Volume2 size={12} />}
           </button>
           <input
@@ -134,7 +134,7 @@ export default function GlobalAudioPlayer() {
         </div>
 
         {/* Close */}
-        <button onClick={close} className="text-[#555] hover:text-[#f0ebe3] transition-colors shrink-0" aria-label="Close player">
+        <button onClick={close} className="text-[#999999] hover:text-[#0A0A0A] shrink-0" aria-label="Close player">
           <X size={14} />
         </button>
       </div>

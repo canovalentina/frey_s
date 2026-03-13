@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
 
 const projectTypes = [
   "Film / TV Composition",
@@ -45,11 +44,11 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="border-t border-[#c8432a] pt-8">
-        <h2 className="font-display text-2xl font-bold text-[#111111] mb-3">
+      <div className="border-t-2 border-[#FF2200] pt-8">
+        <h2 className="text-xl font-semibold text-[#0A0A0A] mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
           Message sent
         </h2>
-        <p className="font-serif text-[#8a847c]">
+        <p className="text-sm text-[#999999]" style={{ fontFamily: "Inter, sans-serif" }}>
           Thank you for reaching out. I typically respond within 2–3 business
           days.
         </p>
@@ -58,53 +57,56 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-7">
       {/* Name */}
       <div>
-        <label className="font-display text-xs text-[#8a847c] block mb-2">
+        <label className="text-[10px] text-[#999999] block mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
           name
         </label>
         <input
           type="text"
           name="name"
           required
-          className="w-full bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors"
+          className="w-full bg-transparent border-b border-[#E5E5E5] px-0 py-2 text-sm text-[#0A0A0A] placeholder-[#999999] focus:border-[#0A0A0A] focus:outline-none"
+          style={{ fontFamily: "Inter, sans-serif" }}
           placeholder="Your name"
         />
       </div>
 
       {/* Email */}
       <div>
-        <label className="font-display text-xs text-[#8a847c] block mb-2">
+        <label className="text-[10px] text-[#999999] block mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
           email
         </label>
         <input
           type="email"
           name="email"
           required
-          className="w-full bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors"
+          className="w-full bg-transparent border-b border-[#E5E5E5] px-0 py-2 text-sm text-[#0A0A0A] placeholder-[#999999] focus:border-[#0A0A0A] focus:outline-none"
+          style={{ fontFamily: "Inter, sans-serif" }}
           placeholder="your@email.com"
         />
       </div>
 
       {/* Project Type */}
       <div>
-        <label className="font-display text-xs text-[#8a847c] block mb-2">
+        <label className="text-[10px] text-[#999999] block mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
           project type
         </label>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-x-4 gap-y-2">
           {projectTypes.map((type) => (
             <button
               key={type}
               type="button"
               onClick={() => setProjectType(type)}
-              className={`font-display text-xs px-2 py-1 border transition-colors ${
+              className={`text-[10px] ${
                 projectType === type
-                  ? "border-[#c8432a] text-[#c8432a]"
-                  : "border-[#d8d2ca] text-[#8a847c] hover:border-[#111111] hover:text-[#111111]"
+                  ? "text-[#FF2200]"
+                  : "text-[#999999] hover:text-[#0A0A0A]"
               }`}
+              style={{ fontFamily: "IBM Plex Mono, monospace" }}
             >
-              {type}
+              {projectType === type ? `[${type}]` : type}
             </button>
           ))}
         </div>
@@ -113,28 +115,30 @@ export default function ContactForm() {
 
       {/* Message */}
       <div>
-        <label className="font-display text-xs text-[#8a847c] block mb-2">
+        <label className="text-[10px] text-[#999999] block mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
           message
         </label>
         <textarea
           name="message"
           required
           rows={6}
-          className="w-full bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors resize-none"
+          className="w-full bg-transparent border-b border-[#E5E5E5] px-0 py-2 text-sm text-[#0A0A0A] placeholder-[#999999] focus:border-[#0A0A0A] focus:outline-none resize-none"
+          style={{ fontFamily: "Inter, sans-serif" }}
           placeholder="Tell me about your project..."
         />
       </div>
 
       {error && (
-        <p className="font-display text-xs text-red-600">{error}</p>
+        <p className="text-[10px] text-[#FF2200]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>{error}</p>
       )}
 
       <button
         type="submit"
         disabled={loading}
-        className="font-display text-sm font-semibold py-3 px-6 bg-[#111111] text-[#f0ebe3] hover:bg-[#c8432a] transition-colors inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="text-sm font-medium py-3 px-6 bg-[#0A0A0A] text-white hover:bg-[#FF2200] disabled:opacity-50 disabled:cursor-not-allowed"
+        style={{ fontFamily: "Inter, sans-serif" }}
       >
-        {loading ? "Sending…" : <>Send message <Send size={14} /></>}
+        {loading ? "Sending…" : "Send message"}
       </button>
     </form>
   );

@@ -93,44 +93,47 @@ export default function TrackDetailClient({ track, related }: Props) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+    <div className="px-6 md:px-12 py-16 md:py-20">
       {/* Back */}
       <Link
         href="/music/licensing"
-        className="font-display text-xs text-[#8a847c] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1 mb-12"
+        className="text-[10px] text-[#999999] hover:text-[#FF2200] inline-flex items-center gap-1 mb-12"
+        style={{ fontFamily: "IBM Plex Mono, monospace" }}
       >
-        <ArrowLeft size={12} /> catalog
+        <ArrowLeft size={10} /> catalog
       </Link>
 
-      <div className="grid md:grid-cols-2 gap-12 md:gap-20 mb-20">
+      <div className="grid md:grid-cols-2 gap-12 md:gap-16 mb-20">
         {/* Left — player & info */}
         <div>
-          {/* Waveform area */}
-          <div className="bg-[#111111] p-8 mb-6">
-            <div className="flex items-center justify-between mb-6">
+          {/* Waveform area — dark panel */}
+          <div className="bg-[#0A0A0A] p-6 mb-6">
+            <div className="flex items-center justify-between mb-5">
               <div>
-                <p className="font-display text-[10px] text-[#8a847c] mb-1">
+                <p className="text-[10px] text-[#999999] mb-1" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                   {track.genres.join(" · ")}
                 </p>
-                <h1 className="font-display text-2xl font-bold text-[#f0ebe3]">
+                <h1 className="text-xl font-semibold text-white" style={{ fontFamily: "Inter, sans-serif" }}>
                   {track.title}
                 </h1>
-                <p className="font-display text-sm text-[#555] mt-0.5">
+                <p className="text-[10px] text-[#999999] mt-0.5" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                   frey_s
                 </p>
               </div>
               <button
                 onClick={handlePlay}
-                className="w-12 h-12 bg-[#c8432a] text-[#f0ebe3] flex items-center justify-center hover:bg-[#a33520] transition-colors shrink-0"
+                className={`w-10 h-10 flex items-center justify-center shrink-0 ${
+                  isPlaying ? "bg-[#00DD44] text-[#0A0A0A]" : "bg-white text-[#0A0A0A] hover:bg-[#FF2200] hover:text-white"
+                }`}
                 aria-label={isPlaying ? "Pause preview" : "Play preview"}
               >
-                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+                {isPlaying ? <Pause size={14} /> : <Play size={14} />}
               </button>
             </div>
 
-            {/* Static waveform visualization */}
+            {/* Waveform */}
             <div
-              className="h-16 flex items-center gap-[2px] cursor-pointer"
+              className="h-14 flex items-center gap-[2px] cursor-pointer"
               onClick={handlePlay}
             >
               {Array.from({ length: 80 }).map((_, i) => {
@@ -139,32 +142,33 @@ export default function TrackDetailClient({ track, related }: Props) {
                 return (
                   <div
                     key={i}
-                    className={`w-[2px] rounded-none flex-shrink-0 transition-colors ${
-                      isCurrentTrack ? "bg-[#c8432a]/60" : "bg-[#2a2a2a]"
-                    }`}
-                    style={{ height: `${height}%` }}
+                    className="w-[2px] flex-shrink-0"
+                    style={{
+                      height: `${height}%`,
+                      backgroundColor: isCurrentTrack ? "#00DD44" : "#333333",
+                    }}
                   />
                 );
               })}
             </div>
 
-            <p className="font-display text-[10px] text-[#444] mt-3 text-center">
+            <p className="text-[10px] text-[#555555] mt-3 text-center" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               30-second watermarked preview
             </p>
           </div>
 
           {/* Track metadata */}
-          <div className="grid grid-cols-3 gap-px bg-[#d8d2ca] mb-6">
+          <div className="grid grid-cols-3 border border-[#E5E5E5] mb-6">
             {[
               { label: "Duration", value: formatDuration(track.duration) },
               { label: "BPM", value: track.bpm ?? "—" },
               { label: "Key", value: track.key ?? "—" },
-            ].map(({ label, value }) => (
-              <div key={label} className="bg-[#f0ebe3] p-3 text-center">
-                <p className="font-display text-[10px] text-[#8a847c] mb-1">
+            ].map(({ label, value }, i) => (
+              <div key={label} className={`p-3 text-center ${i < 2 ? "border-r border-[#E5E5E5]" : ""}`}>
+                <p className="text-[10px] text-[#999999] mb-1" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                   {label}
                 </p>
-                <p className="font-display font-semibold text-[#111111]">
+                <p className="text-sm font-medium text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
                   {value}
                 </p>
               </div>
@@ -174,40 +178,39 @@ export default function TrackDetailClient({ track, related }: Props) {
           {/* Tags */}
           <div className="flex flex-wrap gap-x-3 gap-y-1 mb-4">
             {track.moods.map((m) => (
-              <span key={m} className="font-display text-xs text-[#8a847c]">
+              <span key={m} className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                 {m}
               </span>
             ))}
             {track.genres.map((g) => (
-              <span key={g} className="font-display text-xs text-[#8a847c] opacity-60">
+              <span key={g} className="text-[10px] text-[#999999] opacity-60" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                 {g}
               </span>
             ))}
           </div>
 
           {track.instrumentation && (
-            <p className="font-serif text-sm text-[#8a847c]">
-              <span className="font-display text-[10px] text-[#8a847c] mr-2">
-                instrumentation:
-              </span>
+            <p className="text-sm text-[#999999]" style={{ fontFamily: "Inter, sans-serif" }}>
+              <span className="text-[10px] mr-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>instrumentation:</span>
               {track.instrumentation}
             </p>
           )}
 
           {track.stemsAvailable && (
-            <p className="font-display text-xs text-[#c8432a] mt-2 inline-flex items-center gap-1">
-              <Check size={12} /> stems available on pro license
+            <p className="text-[10px] text-[#00DD44] mt-2 inline-flex items-center gap-1" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+              <span className="w-[6px] h-[6px] bg-[#00DD44] inline-block" />
+              stems available on pro license
             </p>
           )}
         </div>
 
         {/* Right — license selector */}
         <div>
-          <h2 className="font-display text-xs text-[#8a847c] mb-6">
+          <p className="text-[10px] text-[#999999] mb-6" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
             choose a license
-          </h2>
+          </p>
 
-          <div className="space-y-3 mb-8">
+          <div className="space-y-2 mb-8">
             {track.licenses.map((license) => {
               const info = LICENSE_INFO[license.type];
               const selected = selectedLicense?.type === license.type;
@@ -215,55 +218,55 @@ export default function TrackDetailClient({ track, related }: Props) {
                 <button
                   key={license.type}
                   onClick={() => setSelectedLicense(license)}
-                  className={`w-full text-left p-5 border transition-all ${
+                  className={`w-full text-left p-4 border ${
                     selected
-                      ? "border-[#c8432a]"
-                      : "border-[#d8d2ca] hover:border-[#111111]"
+                      ? "border-l-[3px] border-l-[#FF2200] border-t border-r border-b border-[#E5E5E5]"
+                      : "border border-[#E5E5E5] hover:border-[#0A0A0A]"
                   }`}
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
-                      <p className="font-display font-semibold text-[#111111]">
+                      <p className="text-sm font-medium text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
                         {info.label}
                       </p>
-                      <p className="font-serif text-sm text-[#8a847c] mt-0.5">
+                      <p className="text-[10px] text-[#999999] mt-0.5" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                         {info.use}
                       </p>
                     </div>
-                    <div className="text-right shrink-0 ml-4">
-                      <p className="font-display text-xl font-bold text-[#111111]">
-                        ${license.price}
-                      </p>
-                    </div>
+                    <p className="text-base font-semibold text-[#0A0A0A] shrink-0 ml-4" style={{ fontFamily: "Inter, sans-serif" }}>
+                      ${license.price}
+                    </p>
                   </div>
-                  <ul className="space-y-0.5 mt-3">
+                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-2">
                     {info.includes.map((item) => (
-                      <li
+                      <span
                         key={item}
-                        className="font-display text-[11px] text-[#8a847c] inline-flex items-center gap-1 mr-3"
+                        className="text-[10px] text-[#999999] inline-flex items-center gap-1"
+                        style={{ fontFamily: "IBM Plex Mono, monospace" }}
                       >
-                        <Check size={10} className="text-[#c8432a]" /> {item}
-                      </li>
+                        <Check size={8} className="text-[#999999]" /> {item}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </button>
               );
             })}
 
             {/* Exclusive CTA */}
-            <div className="border border-dashed border-[#d8d2ca] p-5">
+            <div className="border border-dashed border-[#E5E5E5] p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-display font-semibold text-[#111111]">
+                  <p className="text-sm font-medium text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
                     Exclusive
                   </p>
-                  <p className="font-serif text-sm text-[#8a847c]">
+                  <p className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                     Full buyout — custom quote
                   </p>
                 </div>
                 <Link
                   href="/contact"
-                  className="font-display text-xs px-4 py-2 border border-[#111111] text-[#111111] hover:bg-[#111111] hover:text-[#f0ebe3] transition-colors shrink-0"
+                  className="text-[10px] px-3 py-1.5 border border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-white shrink-0"
+                  style={{ fontFamily: "IBM Plex Mono, monospace" }}
                 >
                   Inquire
                 </Link>
@@ -277,21 +280,22 @@ export default function TrackDetailClient({ track, related }: Props) {
               <button
                 onClick={handleCheckout}
                 disabled={checkoutLoading}
-                className="w-full font-display text-sm font-semibold py-4 bg-[#111111] text-[#f0ebe3] hover:bg-[#c8432a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full text-sm font-medium py-3 bg-[#0A0A0A] text-white hover:bg-[#FF2200] disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ fontFamily: "Inter, sans-serif" }}
               >
                 {checkoutLoading
                   ? "Redirecting to checkout…"
                   : `Purchase — $${selectedLicense.price}`}
               </button>
               {checkoutError && (
-                <p className="font-display text-xs text-red-600 text-center mt-2">
+                <p className="text-[10px] text-[#FF2200] text-center mt-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                   {checkoutError}
                 </p>
               )}
             </>
           )}
 
-          <p className="font-display text-[10px] text-[#8a847c] text-center mt-3">
+          <p className="text-[10px] text-[#999999] text-center mt-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
             Secure checkout via Stripe · Instant download after payment
           </p>
         </div>
@@ -300,12 +304,12 @@ export default function TrackDetailClient({ track, related }: Props) {
       {/* Related tracks */}
       {related.length > 0 && (
         <div>
-          <div className="border-t border-[#d8d2ca] pt-16 mb-8">
-            <h2 className="font-display text-xs text-[#8a847c]">
+          <div className="border-t border-[#E5E5E5] pt-12 mb-6">
+            <p className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               similar tracks
-            </h2>
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8">
             {related.map((t) => (
               <TrackCard key={t.id} track={t} queue={related} />
             ))}

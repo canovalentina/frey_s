@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 const albums = [
   {
     title: "7-10-22",
-    year: "July 2023",
+    year: "2023",
     description:
       "Series of experimental piano improvisations, recorded in Barcelona in one afternoon.",
     img: "/img/7-10-22.png",
@@ -24,7 +23,7 @@ const albums = [
   },
   {
     title: "Tru Combo",
-    year: "June 2021",
+    year: "2021",
     description:
       "Exploring heavy FX processing, beatmaking, analog synths, acoustic instruments, and samples.",
     img: "/img/tru-combo.png",
@@ -36,7 +35,7 @@ const albums = [
   },
   {
     title: "Fotografía Vol. 2",
-    year: "December 2019",
+    year: "2019",
     description: "Continuation of Fotografía Vol. 1.",
     img: "/img/fotografia-vol2.png",
     links: {
@@ -48,7 +47,7 @@ const albums = [
   },
   {
     title: "Fotografía Vol. 1",
-    year: "August 2019",
+    year: "2019",
     description: "Solo piano, harmony studies, improvisation.",
     img: "/img/fotografia-vol1.png",
     links: {
@@ -60,7 +59,7 @@ const albums = [
   },
   {
     title: "The Hidden Toys",
-    year: "October 2021",
+    year: "2021",
     description: "Bonus tracks from Tru Combo sessions.",
     img: "/img/hidden-toys.png",
     links: {
@@ -73,73 +72,83 @@ const albums = [
 
 export default function MusicPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+    <div className="px-6 md:px-12 py-16 md:py-20">
       {/* Header */}
-      <div className="mb-16 md:mb-24 max-w-2xl">
-        <p className="font-display text-xs text-[#8a847c] mb-4">
+      <div className="mb-12 border-b border-[#E5E5E5] pb-8">
+        <p className="text-[10px] text-[#999999] mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
           discography
         </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#111111] mb-6">
+        <h1 className="text-2xl md:text-3xl font-semibold text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
           Music
         </h1>
-        <p className="font-serif text-xl text-[#8a847c] leading-relaxed">
-          Five years of piano, electronics, and sonic exploration.
-        </p>
       </div>
 
       {/* Licensing nudge */}
-      <div className="mb-16 border-t border-b border-[#d8d2ca] py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <p className="font-display text-sm text-[#111111]">
+      <div className="mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <p className="text-sm text-[#999999]" style={{ fontFamily: "Inter, sans-serif" }}>
           Looking for tracks to license for your project?
         </p>
         <Link
           href="/music/licensing"
-          className="font-display text-sm text-[#111111] hover:text-[#c8432a] border-b border-[#111111] hover:border-[#c8432a] transition-colors pb-px shrink-0 inline-flex items-center gap-1"
+          className="text-[10px] text-[#0A0A0A] hover:text-[#FF2200] border-b border-[#0A0A0A] hover:border-[#FF2200] pb-px shrink-0"
+          style={{ fontFamily: "IBM Plex Mono, monospace" }}
         >
-          Browse catalog <ArrowRight size={12} />
+          Browse catalog →
         </Link>
       </div>
 
-      {/* Albums Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-        {albums.map((album) => (
-          <article key={album.title} className="group">
-            <div className="relative aspect-square overflow-hidden bg-[#d8d2ca] mb-4">
-              <Image
-                src={album.img}
-                alt={album.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+      {/* Albums — horizontal list rows */}
+      <div className="flex flex-col">
+        {albums.map((album, i) => (
+          <article
+            key={album.title}
+            className={`flex items-center gap-6 py-5 ${i < albums.length - 1 ? "border-b border-[#E5E5E5]" : ""}`}
+          >
+            {/* Index */}
+            <span className="text-[10px] text-[#999999] w-5 shrink-0" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
+            {/* Cover */}
+            <div className="relative w-12 h-12 shrink-0 bg-[#E5E5E5] overflow-hidden">
+              <Image src={album.img} alt={album.title} fill className="object-cover" />
             </div>
-            <div className="flex gap-3 mb-2">
+
+            {/* Title */}
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-[#0A0A0A] truncate" style={{ fontFamily: "Inter, sans-serif" }}>
+                {album.title}
+              </p>
+              <p className="text-sm text-[#999999] text-[11px] mt-0.5 hidden md:block truncate" style={{ fontFamily: "Inter, sans-serif" }}>
+                {album.description}
+              </p>
+            </div>
+
+            {/* Year */}
+            <span className="text-[10px] text-[#999999] shrink-0 hidden md:block" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+              {album.year}
+            </span>
+
+            {/* Tags */}
+            <div className="hidden md:flex gap-2 shrink-0">
               {album.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-display text-[10px] text-[#8a847c]"
-                >
+                <span key={tag} className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
                   {tag}
                 </span>
               ))}
             </div>
-            <h3 className="font-display text-xl font-bold text-[#111111] mb-1">
-              {album.title}
-            </h3>
-            <p className="font-display text-xs text-[#8a847c] mb-3">
-              {album.year}
-            </p>
-            <p className="font-serif text-sm text-[#8a847c] leading-relaxed mb-4">
-              {album.description}
-            </p>
-            <div className="flex gap-4">
+
+            {/* Platform links */}
+            <div className="flex gap-3 shrink-0">
               {album.links.spotify && (
                 <a
                   href={album.links.spotify}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-xs text-[#111111] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1"
+                  className="text-[10px] text-[#999999] hover:text-[#0A0A0A]"
+                  style={{ fontFamily: "IBM Plex Mono, monospace" }}
                 >
-                  Spotify <ExternalLink size={10} />
+                  Spotify ↗
                 </a>
               )}
               {album.links.bandcamp && (
@@ -147,9 +156,10 @@ export default function MusicPage() {
                   href={album.links.bandcamp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-xs text-[#111111] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1"
+                  className="text-[10px] text-[#999999] hover:text-[#0A0A0A]"
+                  style={{ fontFamily: "IBM Plex Mono, monospace" }}
                 >
-                  Bandcamp <ExternalLink size={10} />
+                  Bandcamp ↗
                 </a>
               )}
               {album.links.youtube && (
@@ -157,9 +167,10 @@ export default function MusicPage() {
                   href={album.links.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-xs text-[#111111] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1"
+                  className="text-[10px] text-[#999999] hover:text-[#0A0A0A]"
+                  style={{ fontFamily: "IBM Plex Mono, monospace" }}
                 >
-                  YouTube <ExternalLink size={10} />
+                  YouTube ↗
                 </a>
               )}
             </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import LicensingCatalog from "./LicensingCatalog";
 
 export const metadata: Metadata = {
@@ -11,47 +10,48 @@ export const metadata: Metadata = {
 
 export default function LicensingPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
-      {/* Header */}
-      <div className="mb-12 md:mb-16 grid md:grid-cols-2 gap-8 items-end">
-        <div>
-          <p className="font-display text-xs text-[#8a847c] mb-4">
+    <div className="px-6 md:px-12 py-16 md:py-20">
+      {/* Header — Swiss grid */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 md:mb-16">
+        <div className="md:col-start-1 md:col-span-4">
+          <p className="text-[10px] text-[#999999] mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
             sync licensing
           </p>
-          <h1 className="font-display text-5xl md:text-6xl font-bold tracking-tight text-[#111111]">
+          <h1 className="text-2xl md:text-3xl font-semibold text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
             License Music
           </h1>
         </div>
-        <div>
-          <p className="font-serif text-lg text-[#8a847c] leading-relaxed mb-6">
+        <div className="md:col-start-5 md:col-span-8 flex flex-col justify-end">
+          <p className="text-sm text-[#999999] mb-4 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
             Original compositions for film, TV, advertising, YouTube, and more.
             Click play to preview — all previews are watermarked.
           </p>
           <Link
             href="/contact"
-            className="font-display text-xs text-[#8a847c] hover:text-[#c8432a] transition-colors inline-flex items-center gap-1"
+            className="text-[10px] text-[#999999] hover:text-[#FF2200] self-start"
+            style={{ fontFamily: "IBM Plex Mono, monospace" }}
           >
-            Need something custom? <ArrowRight size={12} />
+            Need something custom? →
           </Link>
         </div>
       </div>
 
-      {/* Tier reference */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#d8d2ca] mb-16">
+      {/* Tier reference — 4 horizontal cells */}
+      <div className="grid grid-cols-2 md:grid-cols-4 border border-[#E5E5E5] mb-12">
         {[
           { name: "Personal", price: "from $29", use: "Student films, personal" },
           { name: "Standard", price: "from $99", use: "YouTube, podcasts" },
           { name: "Professional", price: "from $299", use: "Film, TV, advertising" },
           { name: "Exclusive", price: "Custom", use: "Full buyout" },
-        ].map((tier) => (
-          <div key={tier.name} className="bg-[#f0ebe3] p-4 md:p-6">
-            <p className="font-display text-[10px] text-[#c8432a] mb-1">
+        ].map((tier, i) => (
+          <div key={tier.name} className={`p-4 md:p-5 ${i < 3 ? "border-r border-[#E5E5E5]" : ""}`}>
+            <p className="text-[10px] text-[#FF2200] mb-1" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               {tier.name}
             </p>
-            <p className="font-display font-bold text-[#111111] text-sm mb-0.5">
+            <p className="text-sm font-medium text-[#0A0A0A] mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
               {tier.price}
             </p>
-            <p className="font-display text-[10px] text-[#8a847c]">{tier.use}</p>
+            <p className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>{tier.use}</p>
           </div>
         ))}
       </div>

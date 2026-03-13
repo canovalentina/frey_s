@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Film & Media",
@@ -49,39 +48,56 @@ const projects = [
 
 export default function FilmPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+    <div className="px-6 md:px-12 py-16 md:py-20">
       {/* Header */}
-      <div className="mb-16 md:mb-24 max-w-2xl">
-        <p className="font-display text-xs text-[#8a847c] mb-4">
-          portfolio
-        </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#111111] mb-6">
-          Film & Media
-        </h1>
-        <p className="font-serif text-xl text-[#8a847c] leading-relaxed">
-          Original scores, sound design, and live performance for film,
-          documentary, and visual art.
-        </p>
-      </div>
-
-      {/* Hire nudge */}
-      <div className="mb-16 border-t border-[#d8d2ca] pt-8 flex items-center justify-between">
-        <p className="font-display text-xs text-[#8a847c]">Open to new projects</p>
+      <div className="mb-12 border-b border-[#E5E5E5] pb-8 flex items-end justify-between gap-8">
+        <div>
+          <p className="text-[10px] text-[#999999] mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+            portfolio
+          </p>
+          <h1 className="text-2xl md:text-3xl font-semibold text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
+            Film & Media
+          </h1>
+        </div>
         <Link
           href="/contact"
-          className="font-display text-sm text-[#111111] hover:text-[#c8432a] border-b border-[#111111] hover:border-[#c8432a] transition-colors pb-px inline-flex items-center gap-1"
+          className="text-[10px] text-[#999999] hover:text-[#FF2200] shrink-0 border-b border-[#E5E5E5] pb-px"
+          style={{ fontFamily: "IBM Plex Mono, monospace" }}
         >
-          Get in touch <ArrowRight size={12} />
+          Open to new projects →
         </Link>
       </div>
 
-      {/* Projects */}
-      <div className="space-y-24 md:space-y-32">
+      {/* Projects — numbered list, 2-col rows */}
+      <div className="flex flex-col gap-16 md:gap-20">
         {projects.map((project, i) => (
-          <article key={project.title} className="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
-            {/* Video — alternate left/right on desktop */}
-            <div className={`${i % 2 === 1 ? "md:order-2" : ""}`}>
-              <div className="relative aspect-video bg-[#111111] overflow-hidden">
+          <article key={project.title} className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
+            {/* Index */}
+            <div className="md:col-span-1">
+              <span className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+
+            {/* Info */}
+            <div className={`md:col-span-4 ${i % 2 === 1 ? "md:order-3" : ""}`}>
+              <p className="text-[10px] text-[#FF2200] mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+                {project.type}
+              </p>
+              <h2 className="text-base font-semibold text-[#0A0A0A] mb-2 leading-snug" style={{ fontFamily: "Inter, sans-serif" }}>
+                {project.title}
+              </h2>
+              {project.year !== "—" && (
+                <p className="text-[10px] text-[#999999] mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>{project.year}</p>
+              )}
+              <p className="text-sm text-[#999999] leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                {project.description}
+              </p>
+            </div>
+
+            {/* Video */}
+            <div className={`md:col-span-7 ${i % 2 === 1 ? "md:order-2" : ""}`}>
+              <div className="relative aspect-video bg-[#0A0A0A] overflow-hidden">
                 <iframe
                   src={project.embedUrl}
                   title={project.title}
@@ -91,40 +107,26 @@ export default function FilmPage() {
                 />
               </div>
             </div>
-            {/* Info */}
-            <div className={`flex flex-col justify-center ${i % 2 === 1 ? "md:order-1" : ""}`}>
-              <p className="font-display text-xs text-[#8a847c] mb-2">
-                {project.type}
-              </p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#111111] mb-2 leading-tight">
-                {project.title}
-              </h2>
-              {project.year !== "—" && (
-                <p className="font-display text-xs text-[#8a847c] mb-4">{project.year}</p>
-              )}
-              <p className="font-serif text-base text-[#8a847c] leading-relaxed">
-                {project.description}
-              </p>
-            </div>
           </article>
         ))}
       </div>
 
-      {/* Bottom */}
-      <div className="mt-24 md:mt-32 pt-16 border-t border-[#d8d2ca] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      {/* Bottom CTA */}
+      <div className="mt-20 pt-12 border-t border-[#E5E5E5] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
-          <p className="font-serif text-2xl md:text-3xl text-[#111111] leading-snug mb-2">
+          <p className="text-base text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
             Working on something?
           </p>
-          <p className="font-serif text-base text-[#8a847c]">
+          <p className="text-sm text-[#999999] mt-1" style={{ fontFamily: "Inter, sans-serif" }}>
             Available for film scores, documentary music, and creative sound projects.
           </p>
         </div>
         <Link
           href="/contact"
-          className="font-display text-sm text-[#111111] hover:text-[#c8432a] border-b border-[#111111] hover:border-[#c8432a] transition-colors pb-px shrink-0 inline-flex items-center gap-1"
+          className="text-[13px] text-[#0A0A0A] hover:text-[#FF2200] border-b border-[#0A0A0A] hover:border-[#FF2200] pb-px shrink-0"
+          style={{ fontFamily: "Inter, sans-serif" }}
         >
-          Let&apos;s talk <ArrowRight size={12} />
+          Let&apos;s talk →
         </Link>
       </div>
     </div>

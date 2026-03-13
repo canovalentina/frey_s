@@ -38,63 +38,68 @@ export default function LicensingCatalog() {
   return (
     <div>
       {/* Search + sort */}
-      <div className="flex flex-col md:flex-row gap-3 mb-8">
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
         <input
           type="text"
           placeholder="Search tracks, moods, instruments…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 bg-transparent border-b border-[#d8d2ca] px-0 py-2 font-display text-sm text-[#111111] placeholder-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors"
+          className="flex-1 bg-transparent border-b border-[#E5E5E5] px-0 py-2 text-sm text-[#0A0A0A] placeholder-[#999999] focus:border-[#0A0A0A] focus:outline-none"
+          style={{ fontFamily: "Inter, sans-serif" }}
         />
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as SortOption)}
-          className="bg-transparent border-b border-[#d8d2ca] py-2 font-display text-sm text-[#8a847c] focus:border-[#111111] focus:outline-none transition-colors cursor-pointer pr-4"
+          className="bg-transparent border-b border-[#E5E5E5] py-2 text-[10px] text-[#999999] focus:border-[#0A0A0A] focus:outline-none cursor-pointer"
+          style={{ fontFamily: "IBM Plex Mono, monospace" }}
         >
-          <option value="newest">Newest</option>
-          <option value="price-asc">Price ↑</option>
-          <option value="price-desc">Price ↓</option>
+          <option value="newest">newest</option>
+          <option value="price-asc">price ↑</option>
+          <option value="price-desc">price ↓</option>
         </select>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10">
-        <div className="flex flex-wrap gap-2 items-center">
-          <span className="font-display text-xs text-[#8a847c] mr-1">Mood</span>
+      <div className="flex flex-wrap gap-x-8 gap-y-3 mb-10">
+        <div className="flex flex-wrap gap-x-4 gap-y-2 items-center">
+          <span className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>mood</span>
           {ALL_MOODS.map((m) => (
             <button
               key={m}
               onClick={() => toggle(m, selectedMoods, setSelectedMoods)}
-              className={`font-display text-xs px-2 py-1 border transition-colors ${
+              className={`text-[10px] ${
                 selectedMoods.includes(m)
-                  ? "border-[#c8432a] text-[#c8432a]"
-                  : "border-[#d8d2ca] text-[#8a847c] hover:border-[#111111] hover:text-[#111111]"
+                  ? "text-[#FF2200]"
+                  : "text-[#999999] hover:text-[#0A0A0A]"
               }`}
+              style={{ fontFamily: "IBM Plex Mono, monospace" }}
             >
-              {m}
+              {selectedMoods.includes(m) ? `[${m}]` : m}
             </button>
           ))}
         </div>
-        <div className="flex flex-wrap gap-2 items-center">
-          <span className="font-display text-xs text-[#8a847c] mr-1">Genre</span>
+        <div className="flex flex-wrap gap-x-4 gap-y-2 items-center">
+          <span className="text-[10px] text-[#999999]" style={{ fontFamily: "IBM Plex Mono, monospace" }}>genre</span>
           {ALL_GENRES.map((g) => (
             <button
               key={g}
               onClick={() => toggle(g, selectedGenres, setSelectedGenres)}
-              className={`font-display text-xs px-2 py-1 border transition-colors ${
+              className={`text-[10px] ${
                 selectedGenres.includes(g)
-                  ? "border-[#c8432a] text-[#c8432a]"
-                  : "border-[#d8d2ca] text-[#8a847c] hover:border-[#111111] hover:text-[#111111]"
+                  ? "text-[#FF2200]"
+                  : "text-[#999999] hover:text-[#0A0A0A]"
               }`}
+              style={{ fontFamily: "IBM Plex Mono, monospace" }}
             >
-              {g}
+              {selectedGenres.includes(g) ? `[${g}]` : g}
             </button>
           ))}
         </div>
         {hasFilters && (
           <button
             onClick={() => { setSelectedMoods([]); setSelectedGenres([]); setSearch(""); }}
-            className="font-display text-xs text-[#8a847c] hover:text-[#c8432a] transition-colors"
+            className="text-[10px] text-[#999999] hover:text-[#FF2200]"
+            style={{ fontFamily: "IBM Plex Mono, monospace" }}
           >
             clear ×
           </button>
@@ -103,16 +108,21 @@ export default function LicensingCatalog() {
 
       {/* Results */}
       {filtered.length === 0 ? (
-        <div className="py-20 text-center">
-          <p className="font-display text-sm text-[#8a847c]">No tracks match.</p>
-          <button onClick={() => { setSelectedMoods([]); setSelectedGenres([]); setSearch(""); }}
-            className="font-display text-xs text-[#c8432a] mt-2 hover:underline">
-            Clear filters
+        <div className="py-20">
+          <p className="text-sm text-[#999999]" style={{ fontFamily: "Inter, sans-serif" }}>No tracks match.</p>
+          <button
+            onClick={() => { setSelectedMoods([]); setSelectedGenres([]); setSearch(""); }}
+            className="text-[10px] text-[#FF2200] mt-2 hover:underline"
+            style={{ fontFamily: "IBM Plex Mono, monospace" }}
+          >
+            clear filters
           </button>
         </div>
       ) : (
         <>
-          <p className="font-display text-xs text-[#8a847c] mb-6">{filtered.length} track{filtered.length !== 1 ? "s" : ""}</p>
+          <p className="text-[10px] text-[#999999] mb-4" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
+            {filtered.length} track{filtered.length !== 1 ? "s" : ""}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-0">
             {filtered.map((track) => (
               <TrackCard key={track.id} track={track} queue={filtered} />

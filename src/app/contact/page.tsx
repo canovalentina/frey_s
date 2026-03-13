@@ -9,61 +9,58 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+    <div className="px-6 md:px-12 py-16 md:py-20">
       {/* Header */}
-      <div className="mb-16 md:mb-24 max-w-2xl">
-        <p className="font-display text-xs text-[#8a847c] mb-4">
+      <div className="mb-12 border-b border-[#E5E5E5] pb-8">
+        <p className="text-[10px] text-[#999999] mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
           get in touch
         </p>
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-[#111111] mb-6">
+        <h1 className="text-2xl md:text-3xl font-semibold text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
           Contact
         </h1>
-        <p className="font-serif text-xl text-[#8a847c] leading-relaxed">
-          For film scores, licensing, collaborations, and live performance
-          bookings.
-        </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-16 md:gap-24">
         <ContactForm />
 
         {/* Info */}
-        <div className="space-y-10">
+        <div className="space-y-8">
           <div>
-            <p className="font-display text-xs text-[#8a847c] mb-3">
+            <p className="text-[10px] text-[#999999] mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               email
             </p>
             <a
               href="mailto:federicoreyes94@gmail.com"
-              className="font-display text-lg text-[#111111] hover:text-[#c8432a] transition-colors"
+              className="text-sm text-[#0A0A0A] hover:text-[#FF2200]"
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               federicoreyes94@gmail.com
             </a>
           </div>
 
           <div>
-            <p className="font-display text-xs text-[#8a847c] mb-3">
+            <p className="text-[10px] text-[#999999] mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               based in
             </p>
-            <p className="font-display text-lg text-[#111111]">
+            <p className="text-sm text-[#0A0A0A]" style={{ fontFamily: "Inter, sans-serif" }}>
               Barcelona, Spain
             </p>
           </div>
 
           <div>
-            <p className="font-display text-xs text-[#8a847c] mb-3">
+            <p className="text-[10px] text-[#999999] mb-2" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               response time
             </p>
-            <p className="font-serif text-[#8a847c]">
+            <p className="text-sm text-[#999999]" style={{ fontFamily: "Inter, sans-serif" }}>
               I typically respond within 2–3 business days.
             </p>
           </div>
 
           <div>
-            <p className="font-display text-xs text-[#8a847c] mb-3">
+            <p className="text-[10px] text-[#999999] mb-3" style={{ fontFamily: "IBM Plex Mono, monospace" }}>
               available for
             </p>
-            <ul className="font-serif text-[#8a847c] space-y-1">
+            <ul className="space-y-1.5">
               {[
                 "Film & TV scoring",
                 "Documentary music",
@@ -72,9 +69,9 @@ export default function ContactPage() {
                 "Sound installations",
                 "Music production",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span className="w-1 h-1 bg-[#c8432a] flex-shrink-0" />
-                  {item}
+                <li key={item} className="flex items-center gap-3">
+                  <span className="w-[4px] h-[4px] bg-[#0A0A0A] shrink-0 inline-block" />
+                  <span className="text-sm text-[#999999]" style={{ fontFamily: "Inter, sans-serif" }}>{item}</span>
                 </li>
               ))}
             </ul>
