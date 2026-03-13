@@ -1,26 +1,101 @@
 @import "tailwindcss";
+@import "@fontsource/syne/400.css";
+@import "@fontsource/syne/500.css";
+@import "@fontsource/syne/600.css";
+@import "@fontsource/syne/700.css";
+@import "@fontsource/syne/800.css";
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/dm-serif-display/400-italic.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Design Tokens ─── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-ink:       #0a0a0a;
+  --color-paper:     #f7f5f2;
+  --color-lavender:  #b2a2cb;
+  --color-lavender-dim: #8b7aaa;
+  --color-muted:     #6b6b6b;
+  --color-border:    #e2e0dd;
+  --color-white:     #ffffff;
+
+  /* Typography */
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Serif Display", serif;
+  --font-mono: "DM Mono", monospace;
+
+  /* Spacing scale */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 3rem;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─── */
+:root {
+  --background: #f7f5f2;
+  --foreground: #0a0a0a;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Syne", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.font-display {
+  font-family: "Syne", sans-serif;
+}
+
+.font-serif {
+  font-family: "DM Serif Display", serif;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #b2a2cb;
+  border-radius: 2px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: #b2a2cb;
+  color: #0a0a0a;
+}
+
+/* ─── Focus ─── */
+:focus-visible {
+  outline: 2px solid #b2a2cb;
+  outline-offset: 3px;
+}
+
+/* ─── Transitions ─── */
+a, button {
+  transition: color 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
 }

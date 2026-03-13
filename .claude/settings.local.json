@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export NVM_DIR=\"$HOME/.nvm\" && source \"$NVM_DIR/nvm.sh\" && nvm use 24 && node --version && cp -r /private/tmp/freyes-setup/* /Users/valentinacano/Documents/Code/personal/freyes/ && cp -r /private/tmp/freyes-setup/.* /Users/valentinacano/Documents/Code/personal/freyes/ 2>/dev/null; echo \"done\")",
+      "Bash(export NVM_DIR=\"$HOME/.nvm\" && source \"$NVM_DIR/nvm.sh\" && nvm use 24 && npm install @fontsource/syne @fontsource/dm-serif-display lucide-react 2>&1 | tail -5)",
+      "Bash(source ~/.nvm/nvm.sh 2>/dev/null || source ~/.nvm/nvm.sh.sh 2>/dev/null; PATH=\"$HOME/.nvm/versions/node/v24.8.0/bin:$PATH\" npm install @fontsource/syne @fontsource/dm-serif-display lucide-react 2>&1 | tail -5)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.8.0/bin:$PATH\" && npm install @fontsource/syne @fontsource/dm-serif-display lucide-react 2>&1 | tail -5)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.8.0/bin:$PATH\" && npm install @fontsource/syne @fontsource/dm-serif-display lucide-react 2>&1)",
+      "Bash(cp -r /Users/valentinacano/Documents/Code/personal/freyes/img /Users/valentinacano/Documents/Code/personal/freyes/public/img && ls /Users/valentinacano/Documents/Code/personal/freyes/public/img/)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.8.0/bin:$PATH\" && npm run build 2>&1)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.8.0/bin:$PATH\" && npm install 2>&1)",
+      "Bash(export PATH=\"$HOME/.nvm/versions/node/v24.8.0/bin:$PATH\" && rm -rf /Users/valentinacano/Documents/Code/personal/freyes/node_modules && npm install 2>&1)"
+    ]
+  }
+}
